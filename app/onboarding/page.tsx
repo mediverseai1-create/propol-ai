@@ -16,7 +16,6 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Loader2, ChevronRight, Building2, User, Target } from "lucide-react"
-import { slugify } from "@/lib/utils"
 
 const INDUSTRIES = [
   "Technology & Software",
@@ -107,56 +106,17 @@ export default function OnboardingPage() {
     if (!user) { router.push("/sign-in"); return }
 
     try {
-      // Upsert profile
-      await supabase.from("profiles").upsert({
-        id: user.id,
-        email: user.email!,
-        full_name: profile.full_name,
-        job_title: profile.job_title,
-        phone: profile.phone || null,
-        updated_at: new Date().toISOString(),
-      })
-
-      // Create organization
-      const slug = slugify(company.name) + "-" + Math.random().toString(36).slice(2, 6)
-      const { data: org, error: orgError } = await supabase
-        .from("organizations")
-        .insert({
-          name: company.name,
-          slug,
-          industry: company.industry || null,
-          country: company.country || null,
-          size: company.size || null,
-          website: company.website || null,
-          description: company.description || null,
-          owner_id: user.id,
-          subscription_plan: "free",
-          subscription_status: "active",
-        })
-        .select()
-        .single()
-
-      if (orgError) throw orgError
-
-      // Add owner as member
-      await supabase.from("organization_members").insert({
-        organization_id: org.id,
-        user_id: user.id,
-        role: "owner",
-        status: "active",
-        joined_at: new Date().toISOString(),
-      })
-
-      // Initialize credits via API
-      await fetch("/api/credits/initialize", {
+      const res = await fetch("/api/onboarding", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ organizationId: org.id }),
+        body: JSON.stringify({ profile, company, goals }),
       })
-
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || "Setup failed")
       router.push("/dashboard")
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.")
+      console.error("Onboarding error:", err)
+      setError(err instanceof Error ? err.message : "Something went wrong")
       setLoading(false)
     }
   }
