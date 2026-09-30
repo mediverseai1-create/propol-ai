@@ -21,9 +21,7 @@ export default function LandingPage() {
           <Logo size="md" light />
           <div style={{ display: "flex", alignItems: "center", gap: 32 }} className="hidden md:flex">
             {["How it works", "Features", "Pricing"].map(item => (
-              <a key={item} href={`#${item.toLowerCase().replace(/ /g, "-")}`} style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", textDecoration: "none", transition: "color 0.15s" }}
-                onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.9)")}
-                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}>
+              <a key={item} href={`#${item.toLowerCase().replace(/ /g, "-")}`} className="nav-link-dark">
                 {item}
               </a>
             ))}

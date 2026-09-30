@@ -136,6 +136,15 @@
 }
 
 @layer components {
+  .nav-link-dark {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-link-dark:hover {
+    color: rgba(255,255,255,0.9);
+  }
   .sidebar-item {
     display: flex;
     align-items: center;
