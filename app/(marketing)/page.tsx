@@ -1,363 +1,731 @@
 import Link from "next/link"
 import { Logo } from "@/components/shared/logo"
-import { Button } from "@/components/ui/button"
-import {
-  Search, FileText, Brain, GitBranch, Zap, CheckCircle,
-  ArrowRight, Building2, Globe, Shield, BarChart3, Target
-} from "lucide-react"
+
+export const metadata = {
+  title: "Propol AI — AI Proposal & Opportunity Intelligence",
+  description: "Propol AI reads every tender, qualifies every opportunity, and builds submission-ready proposals — so your team focuses on winning, not searching.",
+}
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Nav */}
-      <nav className="border-b border-stone-200 bg-white/95 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Logo size="md" />
-          <div className="hidden md:flex items-center gap-7 text-sm text-stone-600">
-            <a href="#how-it-works" className="hover:text-stone-900 transition-colors">How it works</a>
-            <a href="#features" className="hover:text-stone-900 transition-colors">Features</a>
-            <a href="#pricing" className="hover:text-stone-900 transition-colors">Pricing</a>
+    <div className="min-h-screen bg-white" style={{ fontFamily: "var(--font-sans)" }}>
+
+      {/* ── NAV ── */}
+      <nav style={{
+        position: "sticky", top: 0, zIndex: 50,
+        background: "rgba(12,8,4,0.92)",
+        backdropFilter: "blur(20px)",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+      }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <Logo size="md" light />
+          <div style={{ display: "flex", alignItems: "center", gap: 32 }} className="hidden md:flex">
+            {["How it works", "Features", "Pricing"].map(item => (
+              <a key={item} href={`#${item.toLowerCase().replace(/ /g, "-")}`} style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", textDecoration: "none", transition: "color 0.15s" }}
+                onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.9)")}
+                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}>
+                {item}
+              </a>
+            ))}
           </div>
-          <div className="flex items-center gap-3">
-            <Link href="/sign-in">
-              <Button variant="ghost" size="sm">Sign in</Button>
-            </Link>
-            <Link href="/sign-up">
-              <Button size="sm">Start free</Button>
-            </Link>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <Link href="/sign-in" style={{
+              fontSize: 14, fontWeight: 500, color: "rgba(255,255,255,0.65)",
+              textDecoration: "none", padding: "8px 16px", borderRadius: 8,
+              border: "1px solid rgba(255,255,255,0.12)", transition: "all 0.15s",
+            }}>Sign in</Link>
+            <Link href="/sign-up" style={{
+              fontSize: 14, fontWeight: 600, color: "#0c0804",
+              textDecoration: "none", padding: "9px 20px", borderRadius: 8,
+              background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+              boxShadow: "0 1px 2px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)",
+              transition: "all 0.15s",
+            }}>Get started</Link>
           </div>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="max-w-6xl mx-auto px-6 pt-20 pb-16 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-200 bg-amber-50 text-xs text-amber-800 font-medium mb-8">
-          <Zap className="h-3.5 w-3.5" />
-          AI-powered opportunity intelligence for B2B companies
+      {/* ── HERO ── */}
+      <section style={{
+        background: "linear-gradient(160deg, #0c0804 0%, #1a0f06 40%, #0f0c18 100%)",
+        position: "relative", overflow: "hidden",
+        padding: "120px 24px 100px",
+      }}>
+        {/* Glossy glow orbs */}
+        <div style={{
+          position: "absolute", top: -120, left: "50%", transform: "translateX(-50%)",
+          width: 900, height: 500,
+          background: "radial-gradient(ellipse, rgba(217,119,6,0.18) 0%, rgba(37,99,235,0.08) 50%, transparent 70%)",
+          pointerEvents: "none",
+        }} />
+        <div style={{
+          position: "absolute", top: 60, right: -100,
+          width: 500, height: 500,
+          background: "radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 60%)",
+          pointerEvents: "none",
+        }} />
+        <div style={{
+          position: "absolute", bottom: -60, left: -80,
+          width: 400, height: 400,
+          background: "radial-gradient(circle, rgba(217,119,6,0.1) 0%, transparent 60%)",
+          pointerEvents: "none",
+        }} />
+
+        <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 1 }}>
+          {/* Platform label */}
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 8,
+            padding: "6px 14px", borderRadius: 100,
+            border: "1px solid rgba(217,119,6,0.3)",
+            background: "rgba(217,119,6,0.08)",
+            marginBottom: 32,
+          }}>
+            <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#f59e0b" }} />
+            <span style={{ fontSize: 12, fontWeight: 600, color: "#fbbf24", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+              AI Proposal Intelligence
+            </span>
+          </div>
+
+          {/* Main headline */}
+          <h1 style={{
+            fontSize: "clamp(42px, 6vw, 76px)", fontWeight: 800,
+            lineHeight: 1.08, letterSpacing: "-0.03em",
+            margin: "0 0 28px", color: "#ffffff",
+          }}>
+            The AI that reads every<br />
+            <span style={{
+              background: "linear-gradient(90deg, #f59e0b 0%, #fbbf24 40%, #60a5fa 100%)",
+              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}>tender, qualifies every bid,</span><br />
+            and builds the proposal.
+          </h1>
+
+          <p style={{
+            fontSize: 19, color: "rgba(255,255,255,0.5)", lineHeight: 1.7,
+            maxWidth: 600, margin: "0 auto 48px",
+          }}>
+            Propol AI studies your company, scans the market for matching contracts, scores every opportunity against your capabilities, and drafts submission-ready proposals — section by section.
+          </p>
+
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
+            <Link href="/sign-up" style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              padding: "14px 32px", borderRadius: 10,
+              background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+              color: "#0c0804", fontSize: 15, fontWeight: 700, textDecoration: "none",
+              boxShadow: "0 0 40px rgba(245,158,11,0.3), 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25)",
+              transition: "all 0.2s",
+            }}>
+              Get started free
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </Link>
+            <Link href="/sign-in" style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              padding: "14px 32px", borderRadius: 10,
+              border: "1px solid rgba(255,255,255,0.12)",
+              background: "rgba(255,255,255,0.04)",
+              color: "rgba(255,255,255,0.75)", fontSize: 15, fontWeight: 500, textDecoration: "none",
+            }}>
+              Sign in
+            </Link>
+          </div>
+
+          <p style={{ marginTop: 24, fontSize: 13, color: "rgba(255,255,255,0.25)", letterSpacing: "0.04em" }}>
+            Business Memory · Opportunity Discovery · Proposal Builder · Pipeline
+          </p>
         </div>
 
-        <h1 className="text-5xl md:text-6xl font-semibold text-stone-900 leading-tight text-balance max-w-4xl mx-auto">
-          Find the right opportunities.<br />
-          <span className="text-amber-800">Win more of what you pursue.</span>
-        </h1>
-
-        <p className="mt-6 text-lg text-stone-500 max-w-2xl mx-auto leading-relaxed text-balance">
-          Propol AI discovers relevant government contracts, RFPs, tenders, and grants — then prepares everything your company needs to apply. From opportunity to submission-ready proposal.
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-10">
-          <Link href="/sign-up">
-            <Button size="xl" className="gap-2 shadow-sm">
-              Start free — 200 credits included
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
-          <Link href="#how-it-works">
-            <Button size="xl" variant="outline">See how it works</Button>
-          </Link>
-        </div>
-
-        <p className="mt-4 text-xs text-stone-400">No credit card required · Free plan available · Cancel anytime</p>
-      </section>
-
-      {/* Stats bar */}
-      <section className="border-y border-stone-100 bg-stone-50">
-        <div className="max-w-4xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
-            { value: "89%", label: "Average fit score accuracy" },
-            { value: "73%", label: "Time saved on proposals" },
-            { value: "2.4×", label: "Win rate improvement" },
-            { value: "48hr", label: "Average proposal turnaround" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div className="text-3xl font-semibold text-amber-900">{s.value}</div>
-              <div className="text-sm text-stone-500 mt-1">{s.label}</div>
+        {/* Dashboard preview mockup */}
+        <div style={{ maxWidth: 1000, margin: "72px auto 0", position: "relative", zIndex: 1 }}>
+          <div style={{
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: 16,
+            overflow: "hidden",
+            boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05)",
+          }}>
+            {/* Mock browser bar */}
+            <div style={{
+              padding: "12px 16px",
+              background: "rgba(255,255,255,0.04)",
+              borderBottom: "1px solid rgba(255,255,255,0.06)",
+              display: "flex", alignItems: "center", gap: 8,
+            }}>
+              <div style={{ display: "flex", gap: 6 }}>
+                {["#ff5f57","#ffbd2e","#28c840"].map(c => (
+                  <div key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />
+                ))}
+              </div>
+              <div style={{
+                flex: 1, maxWidth: 300, margin: "0 auto",
+                background: "rgba(255,255,255,0.05)", borderRadius: 6, padding: "4px 12px",
+                fontSize: 11, color: "rgba(255,255,255,0.3)", textAlign: "center",
+              }}>
+                app.propolai.cloud/dashboard
+              </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section id="how-it-works" className="max-w-6xl mx-auto px-6 py-20">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl font-semibold text-stone-900">From discovery to submission</h2>
-          <p className="text-stone-500 mt-3 max-w-xl mx-auto">One intelligent platform handles everything between finding an opportunity and submitting a winning proposal.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              step: "01",
-              icon: Brain,
-              title: "Build your Business Memory",
-              desc: "Upload your company profile, previous proposals, certifications, and case studies. PROPOL builds an intelligent understanding of your capabilities.",
-            },
-            {
-              step: "02",
-              icon: Search,
-              title: "Discover relevant opportunities",
-              desc: "PROPOL searches connected sources and returns only opportunities that genuinely match your company — ranked by fit score. Ask for 10, 25, 50, or 100.",
-            },
-            {
-              step: "03",
-              icon: Target,
-              title: "Evaluate fit instantly",
-              desc: "Every opportunity gets an AI-powered fit score, eligibility assessment, and a clear pursue / review / pass recommendation.",
-            },
-            {
-              step: "04",
-              icon: FileText,
-              title: "Prepare the complete proposal",
-              desc: "PROPOL drafts every section: executive summary, methodology, implementation plan, team structure, risk management, cover letter, and more.",
-            },
-            {
-              step: "05",
-              icon: Zap,
-              title: "Close the gaps automatically",
-              desc: "Missing a document? PROPOL identifies what can be created from your Business Memory and only asks for what genuinely cannot be generated.",
-            },
-            {
-              step: "06",
-              icon: CheckCircle,
-              title: "Score and review before submission",
-              desc: "Get a full readiness report: eligibility, compliance, evidence strength, proposal quality — with specific items to fix before submitting.",
-            },
-          ].map((item) => (
-            <div key={item.step} className="p-6 rounded-xl border border-stone-100 bg-white hover:border-amber-200 hover:shadow-sm transition-all">
-              <div className="flex items-start gap-4">
-                <div>
-                  <div className="text-xs font-semibold text-amber-800/50 mb-2">{item.step}</div>
-                  <item.icon className="h-6 w-6 text-amber-800" />
+            {/* Mock dashboard content */}
+            <div style={{ padding: 24, display: "grid", gridTemplateColumns: "220px 1fr", gap: 20, minHeight: 280 }}>
+              {/* Sidebar */}
+              <div style={{ borderRight: "1px solid rgba(255,255,255,0.06)", paddingRight: 20 }}>
+                <div style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>Navigation</div>
+                {[
+                  { label: "Dashboard", active: true },
+                  { label: "Opportunities", active: false },
+                  { label: "Proposals", active: false },
+                  { label: "Pipeline", active: false },
+                  { label: "Business Memory", active: false },
+                  { label: "Analytics", active: false },
+                ].map(item => (
+                  <div key={item.label} style={{
+                    padding: "8px 10px", borderRadius: 6, marginBottom: 2,
+                    background: item.active ? "rgba(217,119,6,0.15)" : "transparent",
+                    color: item.active ? "#fbbf24" : "rgba(255,255,255,0.35)",
+                    fontSize: 13, display: "flex", alignItems: "center", gap: 8,
+                  }}>
+                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: item.active ? "#f59e0b" : "rgba(255,255,255,0.15)" }} />
+                    {item.label}
+                  </div>
+                ))}
+              </div>
+              {/* Main area */}
+              <div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginBottom: 20 }}>
+                  {[
+                    { label: "In Pipeline", value: "24", color: "#60a5fa" },
+                    { label: "Active Proposals", value: "6", color: "#f59e0b" },
+                    { label: "Submitted", value: "11", color: "#34d399" },
+                    { label: "Won", value: "3", color: "#a78bfa" },
+                  ].map(kpi => (
+                    <div key={kpi.label} style={{
+                      background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)",
+                      borderRadius: 10, padding: "14px 16px",
+                    }}>
+                      <div style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", marginBottom: 6 }}>{kpi.label}</div>
+                      <div style={{ fontSize: 24, fontWeight: 700, color: kpi.color }}>{kpi.value}</div>
+                    </div>
+                  ))}
                 </div>
-                <div>
-                  <h3 className="text-base font-semibold text-stone-900 mb-1.5">{item.title}</h3>
-                  <p className="text-sm text-stone-500 leading-relaxed">{item.desc}</p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                  {[
+                    { title: "Infrastructure Modernization RFP", score: 87, status: "Preparing" },
+                    { title: "Digital Services Framework", score: 73, status: "Analyzing" },
+                    { title: "AI Consultancy Tender 2026", score: 91, status: "Recommended" },
+                    { title: "Smart City Initiative", score: 65, status: "Discovered" },
+                  ].map(opp => (
+                    <div key={opp.title} style={{
+                      background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)",
+                      borderRadius: 8, padding: "12px 14px",
+                    }}>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
+                        <span style={{
+                          fontSize: 10, fontWeight: 600, padding: "2px 8px", borderRadius: 4,
+                          background: opp.score >= 80 ? "rgba(52,211,153,0.15)" : "rgba(251,191,36,0.15)",
+                          color: opp.score >= 80 ? "#34d399" : "#fbbf24",
+                        }}>{opp.score}% fit</span>
+                        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)" }}>{opp.status}</span>
+                      </div>
+                      <p style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.4 }}>{opp.title}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-          ))}
+          </div>
+          {/* Glow under the mockup */}
+          <div style={{
+            position: "absolute", bottom: -40, left: "50%", transform: "translateX(-50%)",
+            width: "60%", height: 80,
+            background: "radial-gradient(ellipse, rgba(217,119,6,0.2) 0%, transparent 70%)",
+            filter: "blur(20px)", pointerEvents: "none",
+          }} />
         </div>
       </section>
 
-      {/* Features */}
-      <section id="features" className="bg-stone-50 border-y border-stone-100">
-        <div className="max-w-6xl mx-auto px-6 py-20">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-semibold text-stone-900">Built for professional teams</h2>
-            <p className="text-stone-500 mt-3 max-w-xl mx-auto">Every feature is designed for business development, proposals, and procurement teams at serious companies.</p>
+      {/* ── OPERATING LOOP ── */}
+      <section id="how-it-works" style={{ background: "#fafaf9", padding: "100px 24px", borderTop: "1px solid #e7e5e4" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#d97706", marginBottom: 16 }}>
+            THE PROPOL OPERATING LOOP
+          </p>
+          <h2 style={{ fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 800, color: "#1c1917", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: 16 }}>
+            Discover. Qualify. Build. Win.
+          </h2>
+          <p style={{ fontSize: 17, color: "#78716c", maxWidth: 540, margin: "0 auto 56px", lineHeight: 1.65 }}>
+            Every stage feeds the next automatically. A tender published today is qualified, prepared, and in your proposal editor before your team finishes coffee.
+          </p>
+
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 0, marginBottom: 64 }}>
+            {["Discover", "Qualify", "Analyze", "Build", "Review", "Submit", "Win"].map((step, i, arr) => (
+              <div key={step} style={{ display: "flex", alignItems: "center" }}>
+                <div style={{
+                  padding: "10px 20px", borderRadius: 100,
+                  background: i === 3 ? "linear-gradient(135deg, #f59e0b, #d97706)" : i < 3 ? "#1c1917" : "white",
+                  color: i === 3 ? "#0c0804" : i < 3 ? "white" : "#78716c",
+                  border: i >= 3 && i !== 3 ? "1.5px solid #e7e5e4" : "none",
+                  fontSize: 14, fontWeight: 600,
+                  boxShadow: i === 3 ? "0 4px 20px rgba(245,158,11,0.35)" : "none",
+                }}>
+                  {step}
+                </div>
+                {i < arr.length - 1 && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ color: "#d6d3d1" }}>
+                    <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
+              </div>
+            ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Three columns */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 2 }}>
             {[
               {
-                icon: GitBranch,
-                title: "Opportunity Pipeline",
-                desc: "Manage dozens of opportunities simultaneously. Track every stage from discovery through submission to outcome.",
+                icon: "🔍",
+                title: "Business Memory learns your company",
+                body: "It reads your past contracts, certifications, team structure, and capabilities. Every discovery decision is grounded in what your organisation can actually deliver.",
               },
               {
-                icon: Brain,
-                title: "Business Memory",
-                desc: "Your company's intelligence layer. Previous projects, certifications, team expertise, policies — all used automatically in proposals.",
+                icon: "⚡",
+                title: "The AI scans and qualifies automatically",
+                body: "Propol AI surfaces matching tenders, scores each against your profile, and flags what to pursue, what to pass, and why — with no manual sifting.",
               },
               {
-                icon: BarChart3,
-                title: "Analytics & Reports",
-                desc: "Track pipeline value, win rates, fit score distributions, and credit usage. Export reports for stakeholders.",
+                icon: "📄",
+                title: "Proposals are drafted section by section",
+                body: "Executive summary, technical approach, methodology, pricing — each section generated from your own company data and the opportunity's requirements.",
               },
-              {
-                icon: Shield,
-                title: "Multi-tenant security",
-                desc: "Organization-level data isolation. Role-based permissions: Owner, Admin, Manager, Member, Viewer. Row-level security at the database.",
-              },
-              {
-                icon: Globe,
-                title: "All opportunity types",
-                desc: "Government contracts, private RFPs, RFQs, tenders, grants, NGO contracts, enterprise procurement, partnerships, and more.",
-              },
-              {
-                icon: Building2,
-                title: "Team collaboration",
-                desc: "Invite your proposals team, business development managers, and subject matter experts. Work on opportunities together.",
-              },
-            ].map((f) => (
-              <div key={f.title} className="flex items-start gap-4 p-5 bg-white rounded-xl border border-stone-200">
-                <div className="h-9 w-9 rounded-lg bg-amber-100 flex items-center justify-center shrink-0">
-                  <f.icon className="h-5 w-5 text-amber-800" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-stone-900">{f.title}</h3>
-                  <p className="text-sm text-stone-500 mt-1 leading-relaxed">{f.desc}</p>
-                </div>
+            ].map((col, i) => (
+              <div key={i} style={{
+                padding: 32, textAlign: "left",
+                borderRadius: i === 0 ? "12px 0 0 12px" : i === 2 ? "0 12px 12px 0" : 0,
+                border: "1px solid #e7e5e4",
+                background: "white",
+                marginLeft: i > 0 ? -1 : 0,
+              }}>
+                <div style={{ fontSize: 28, marginBottom: 16 }}>{col.icon}</div>
+                <h3 style={{ fontSize: 17, fontWeight: 700, color: "#1c1917", marginBottom: 10, lineHeight: 1.3 }}>{col.title}</h3>
+                <p style={{ fontSize: 14, color: "#78716c", lineHeight: 1.65, margin: 0 }}>{col.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Who it's for */}
-      <section className="max-w-6xl mx-auto px-6 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-semibold text-stone-900">Who uses Propol AI</h2>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {[
-            "Technology Companies",
-            "Engineering Firms",
-            "Consulting Practices",
-            "Construction Companies",
-            "Healthcare Providers",
-            "Environmental Services",
-            "Management Consultants",
-            "Professional Services",
-            "NGOs & Non-profits",
-            "Research Organizations",
-          ].map((type) => (
-            <div key={type} className="text-center p-4 rounded-lg border border-stone-100 bg-stone-50 text-sm text-stone-600 font-medium">
-              {type}
-            </div>
-          ))}
+      {/* ── WHAT PROPOL LOOKS FOR ── */}
+      <section style={{ background: "#1c1917", padding: "100px 24px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#d97706", marginBottom: 16 }}>
+              WHAT PROPOL AI READS
+            </p>
+            <h2 style={{ fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 800, color: "#ffffff", lineHeight: 1.1, letterSpacing: "-0.02em", margin: "0 0 16px" }}>
+              Your pipeline is already full of signal.
+            </h2>
+            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 800, color: "rgba(255,255,255,0.3)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: "0 0 20px" }}>
+              Most teams only see the deadline.
+            </h2>
+            <p style={{ fontSize: 17, color: "rgba(255,255,255,0.45)", maxWidth: 560, margin: "0 auto", lineHeight: 1.65 }}>
+              Propol AI reads every requirement, every evaluation criterion, and your entire company profile — then tells your team exactly what to pursue and how.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 1, background: "rgba(255,255,255,0.06)", borderRadius: 12, overflow: "hidden" }}>
+            {[
+              { title: "Fit scoring", body: "Every opportunity scored against your capabilities, certifications, past contracts, and target sectors — before you read a single page." },
+              { title: "Eligibility gaps", body: "What you qualify for and what's missing. Requirements you meet, requirements you need to address, and which gaps are solvable." },
+              { title: "High-value matches", body: "Opportunities in your sector, your price range, your geography — ranked by probability of a strong proposal, not just keyword overlap." },
+              { title: "Deadline intelligence", body: "Which deadlines are actually achievable given current workload. Which proposals need to start today to be submission-ready on time." },
+              { title: "Competitive framing", body: "How to position your company's strengths against the evaluation criteria, with section-level themes built from your own wins." },
+              { title: "Readiness score", body: "Before submission, a proposal readiness check across all dimensions: completeness, compliance, evidence, quality, and eligibility." },
+            ].map((item, i) => (
+              <div key={i} style={{
+                padding: "32px 28px", background: "#1c1917",
+                transition: "background 0.2s",
+              }}>
+                <div style={{ width: 32, height: 2, background: "linear-gradient(90deg, #f59e0b, #3b82f6)", borderRadius: 1, marginBottom: 20 }} />
+                <h3 style={{ fontSize: 16, fontWeight: 700, color: "#ffffff", marginBottom: 10 }}>{item.title}</h3>
+                <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", lineHeight: 1.65, margin: 0 }}>{item.body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="bg-stone-50 border-y border-stone-100">
-        <div className="max-w-5xl mx-auto px-6 py-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-semibold text-stone-900">Simple, credit-based pricing</h2>
-            <p className="text-stone-500 mt-3 max-w-xl mx-auto">Your subscription provides a monthly credit allowance. Use credits for AI analysis, proposal drafting, and discovery. Credits reset every billing period.</p>
+      {/* ── FEATURES ── */}
+      <section id="features" style={{ background: "white", padding: "100px 24px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#d97706", marginBottom: 16 }}>
+              THE FIVE MODULES
+            </p>
+            <h2 style={{ fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 800, color: "#1c1917", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0 }}>
+              One system. Every stage of the bid.
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 20 }}>
+            {[
+              {
+                number: "01",
+                title: "Business Memory",
+                subtitle: "Your company, understood",
+                body: "Propol AI reads your certifications, past contracts, team structure, financial standing, and capabilities — building a governed profile it uses in every analysis and every proposal section.",
+                accent: "#f59e0b",
+              },
+              {
+                number: "02",
+                title: "PROPOL Discover",
+                subtitle: "Opportunities, qualified before you see them",
+                body: "It scans the market for government tenders, RFPs, grants, and private contracts that match your profile. Every result arrives with a fit score, eligibility check, and a pursue or pass recommendation.",
+                accent: "#3b82f6",
+              },
+              {
+                number: "03",
+                title: "PROPOL Match",
+                subtitle: "AI analysis of every opportunity",
+                body: "For any opportunity you upload or discover, Propol AI produces a full analysis: requirements, evaluation criteria, your eligibility gaps, the competitive landscape, and an exact readiness plan.",
+                accent: "#8b5cf6",
+              },
+              {
+                number: "04",
+                title: "PROPOL Build",
+                subtitle: "Proposals drafted section by section",
+                body: "Executive summary, technical approach, methodology, implementation plan, risk management, pricing schedule — each section generated from your Business Memory and the opportunity's own requirements.",
+                accent: "#10b981",
+              },
+              {
+                number: "05",
+                title: "Gap Intelligence",
+                subtitle: "Know what's missing before submission",
+                body: "Propol AI checks your proposal against every stated requirement and scores readiness across six dimensions. It names exactly what to address before you click submit.",
+                accent: "#f97316",
+              },
+              {
+                number: "06",
+                title: "Opportunity Pipeline",
+                subtitle: "One view of everything in motion",
+                body: "Every opportunity moves from Discovered to Won through a governed pipeline. Your team knows the status, the deadline, the fit score, and the next action — on every bid, at all times.",
+                accent: "#ec4899",
+              },
+            ].map((feat, i) => (
+              <div key={i} style={{
+                padding: 32, borderRadius: 12,
+                border: "1.5px solid #f5f5f4",
+                background: "white",
+                position: "relative", overflow: "hidden",
+                transition: "border-color 0.2s, box-shadow 0.2s",
+              }}>
+                <div style={{
+                  position: "absolute", top: 0, left: 0, right: 0, height: 3,
+                  background: `linear-gradient(90deg, ${feat.accent}, transparent)`,
+                }} />
+                <div style={{
+                  fontSize: 11, fontWeight: 800, letterSpacing: "0.08em",
+                  color: feat.accent, marginBottom: 20,
+                }}>
+                  {feat.number}
+                </div>
+                <h3 style={{ fontSize: 20, fontWeight: 800, color: "#1c1917", marginBottom: 4, letterSpacing: "-0.01em" }}>
+                  {feat.title}
+                </h3>
+                <p style={{ fontSize: 13, fontWeight: 600, color: feat.accent, marginBottom: 14, textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                  {feat.subtitle}
+                </p>
+                <p style={{ fontSize: 14, color: "#78716c", lineHeight: 1.7, margin: 0 }}>{feat.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TRUST ── */}
+      <section style={{ background: "#fafaf9", padding: "80px 24px", borderTop: "1px solid #e7e5e4", borderBottom: "1px solid #e7e5e4" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 1, background: "#e7e5e4", borderRadius: 12, overflow: "hidden" }}>
+            {[
+              { stat: "89%", label: "average opportunity fit accuracy" },
+              { stat: "73%", label: "reduction in proposal preparation time" },
+              { stat: "2.4×", label: "improvement in win rate" },
+              { stat: "48 hr", label: "from discovery to draft proposal" },
+            ].map((s, i) => (
+              <div key={i} style={{ background: "white", padding: "40px 32px", textAlign: "center" }}>
+                <div style={{ fontSize: 42, fontWeight: 800, color: "#1c1917", letterSpacing: "-0.03em", marginBottom: 8 }}>{s.stat}</div>
+                <div style={{ fontSize: 13, color: "#a8a29e", lineHeight: 1.4 }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+          <p style={{ textAlign: "center", fontSize: 11, color: "#a8a29e", marginTop: 16 }}>Illustrative metrics based on platform capabilities. Results vary by organization and use.</p>
+        </div>
+      </section>
+
+      {/* ── WHO USES IT ── */}
+      <section style={{ background: "white", padding: "100px 24px" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#d97706", marginBottom: 16 }}>
+            BUILT FOR
+          </p>
+          <h2 style={{ fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 800, color: "#1c1917", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: 48 }}>
+            Every organisation that competes for contracts
+          </h2>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 12 }}>
+            {[
+              "Technology firms", "Engineering consultancies", "Construction companies",
+              "Healthcare providers", "Environmental agencies", "Facilities management",
+              "Nonprofits & NGOs", "Defence contractors", "Advisory firms", "Training providers",
+            ].map(type => (
+              <div key={type} style={{
+                padding: "14px 16px", borderRadius: 8,
+                border: "1.5px solid #f5f5f4", background: "#fafaf9",
+                fontSize: 13, fontWeight: 600, color: "#44403c",
+              }}>
+                {type}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PRICING ── */}
+      <section id="pricing" style={{ background: "#1c1917", padding: "100px 24px" }}>
+        <div style={{ maxWidth: 1050, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#d97706", marginBottom: 16 }}>
+              PRICING
+            </p>
+            <h2 style={{ fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 800, color: "#ffffff", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: 16 }}>
+              Every module. Every plan.
+            </h2>
+            <p style={{ fontSize: 17, color: "rgba(255,255,255,0.4)", maxWidth: 480, margin: "0 auto" }}>
+              Credits refresh every billing cycle. The only difference between plans is how many you get.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
             {[
               {
                 name: "Free",
                 price: "$0",
-                credits: "200",
-                period: "forever",
-                features: ["200 credits/month", "Opportunity discovery", "Basic analysis", "1 user", "Community support"],
-                cta: "Start free",
+                period: "/ month",
+                credits: "200 credits",
+                desc: "Try Propol AI on a real opportunity. No credit card.",
+                cta: "Get started",
                 href: "/sign-up",
-                highlight: false,
+                featured: false,
+                link: null,
               },
               {
                 name: "Starter",
                 price: "$47",
-                credits: "4,000",
-                period: "/month",
-                features: ["4,000 credits/month", "Full AI analysis", "Proposal drafting", "Business Memory", "Email support"],
-                cta: "Get Starter",
-                href: "/sign-up",
-                highlight: false,
+                period: "/ month",
+                credits: "4,000 credits",
+                desc: "For small teams actively pursuing 5–15 contracts per month.",
+                cta: "Get started",
+                href: process.env.NEXT_PUBLIC_STARTER_PAYMENT_LINK || "/sign-up",
+                featured: false,
+                link: null,
               },
               {
                 name: "Pro",
                 price: "$57",
-                credits: "7,000",
-                period: "/month",
-                features: ["7,000 credits/month", "Everything in Starter", "Compliance checker", "Readiness scoring", "Priority support"],
-                cta: "Get Pro",
-                href: "/sign-up",
-                highlight: true,
+                period: "/ month",
+                credits: "7,000 credits",
+                desc: "For growing teams running parallel proposals and deep AI analysis.",
+                cta: "Get started",
+                href: process.env.NEXT_PUBLIC_PRO_PAYMENT_LINK || "/sign-up",
+                featured: true,
+                link: null,
               },
               {
                 name: "Scale",
                 price: "$97",
-                credits: "11,000",
-                period: "/month",
-                features: ["11,000 credits/month", "Everything in Pro", "Bulk pursuit", "Team collaboration", "Dedicated support"],
-                cta: "Get Scale",
-                href: "/sign-up",
-                highlight: false,
+                period: "/ month",
+                credits: "11,000 credits",
+                desc: "For high-volume teams and agencies managing dozens of bids.",
+                cta: "Get started",
+                href: process.env.NEXT_PUBLIC_SCALE_PAYMENT_LINK || "/sign-up",
+                featured: false,
+                link: null,
               },
             ].map((plan) => (
-              <div key={plan.name} className={`p-6 rounded-xl border ${plan.highlight ? "border-amber-800 shadow-md bg-white ring-1 ring-amber-800" : "border-stone-200 bg-white"}`}>
-                {plan.highlight && (
-                  <div className="text-xs font-semibold text-amber-800 bg-amber-100 px-2.5 py-1 rounded-full inline-block mb-3">Most Popular</div>
+              <div key={plan.name} style={{
+                padding: 28, borderRadius: 14,
+                background: plan.featured
+                  ? "linear-gradient(145deg, #1a0f00, #2d1a00)"
+                  : "rgba(255,255,255,0.04)",
+                border: plan.featured
+                  ? "1.5px solid rgba(245,158,11,0.4)"
+                  : "1.5px solid rgba(255,255,255,0.08)",
+                position: "relative", overflow: "hidden",
+                boxShadow: plan.featured ? "0 0 60px rgba(245,158,11,0.12)" : "none",
+              }}>
+                {plan.featured && (
+                  <>
+                    <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, #f59e0b, #d97706)" }} />
+                    <div style={{
+                      position: "absolute", top: 14, right: 14,
+                      fontSize: 10, fontWeight: 700, letterSpacing: "0.06em",
+                      color: "#0c0804", background: "#f59e0b",
+                      padding: "3px 8px", borderRadius: 4,
+                    }}>POPULAR</div>
+                  </>
                 )}
-                <div className="text-lg font-semibold text-stone-900">{plan.name}</div>
-                <div className="mt-2">
-                  <span className="text-3xl font-bold text-stone-900">{plan.price}</span>
-                  <span className="text-stone-400 text-sm">{plan.period}</span>
+                <div style={{ fontSize: 13, fontWeight: 700, color: plan.featured ? "#fbbf24" : "rgba(255,255,255,0.5)", marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.06em" }}>{plan.name}</div>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
+                  <span style={{ fontSize: 38, fontWeight: 800, color: "#ffffff", letterSpacing: "-0.02em" }}>{plan.price}</span>
+                  <span style={{ fontSize: 14, color: "rgba(255,255,255,0.35)" }}>{plan.period}</span>
                 </div>
-                <div className="text-sm text-amber-800 font-medium mt-1">{plan.credits} credits/month</div>
-                <ul className="mt-4 space-y-2">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-stone-600">
-                      <CheckCircle className="h-4 w-4 text-emerald-600 shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link href={plan.href} className="block mt-5">
-                  <Button className="w-full" variant={plan.highlight ? "default" : "outline"} size="sm">
-                    {plan.cta}
-                  </Button>
+                <div style={{ fontSize: 13, fontWeight: 600, color: plan.featured ? "#f59e0b" : "rgba(255,255,255,0.4)", marginBottom: 16 }}>{plan.credits}</div>
+                <p style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", lineHeight: 1.6, marginBottom: 24 }}>{plan.desc}</p>
+                <Link href={plan.href} style={{
+                  display: "block", textAlign: "center",
+                  padding: "11px 20px", borderRadius: 8,
+                  background: plan.featured
+                    ? "linear-gradient(135deg, #f59e0b, #d97706)"
+                    : "rgba(255,255,255,0.08)",
+                  color: plan.featured ? "#0c0804" : "rgba(255,255,255,0.8)",
+                  fontSize: 14, fontWeight: 700, textDecoration: "none",
+                  boxShadow: plan.featured ? "0 4px 16px rgba(245,158,11,0.3)" : "none",
+                }}>
+                  {plan.cta}
                 </Link>
+                <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                  {["All 6 modules included", "Unlimited team members", "Business Memory", "Proposal Builder", "Pipeline tracking"].map(feat => (
+                    <div key={feat} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke={plan.featured ? "#f59e0b" : "rgba(255,255,255,0.3)"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      <span style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>{feat}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="max-w-3xl mx-auto px-6 py-20">
-        <h2 className="text-3xl font-semibold text-stone-900 text-center mb-12">Frequently asked questions</h2>
-        <div className="space-y-6">
-          {[
-            {
-              q: "What types of opportunities does Propol AI find?",
-              a: "Propol AI discovers government contracts, public tenders, private RFPs, RFQs, grants, NGO contracts, enterprise procurement opportunities, innovation funding, and partnership opportunities — across any industry.",
-            },
-            {
-              q: "How does the credit system work?",
-              a: "Each subscription plan includes a monthly credit allowance. Different AI operations consume different amounts of credits: opportunity discovery, analysis, proposal section generation, readiness scoring, and more. Credits reset each billing period.",
-            },
-            {
-              q: "Can Propol AI really write complete proposals?",
-              a: "Yes. Using your Business Memory and the opportunity requirements, PROPOL drafts executive summaries, cover letters, technical proposals, methodologies, implementation plans, risk management sections, team profiles, timelines, and more. You review and refine the output.",
-            },
-            {
-              q: "Does Propol AI fabricate credentials or certifications?",
-              a: "Never. PROPOL only uses verified information from your Business Memory. If your company doesn't hold a required certification, it will clearly flag this as an external requirement rather than fabricate it.",
-            },
-            {
-              q: "Is my company data secure?",
-              a: "All data is isolated at the organization level using Supabase Row Level Security. Users can only access their own organization's data. All AI processing happens server-side — your API keys and sensitive data are never exposed.",
-            },
-          ].map((faq) => (
-            <div key={faq.q} className="border-b border-stone-100 pb-6">
-              <h3 className="text-base font-semibold text-stone-900 mb-2">{faq.q}</h3>
-              <p className="text-sm text-stone-500 leading-relaxed">{faq.a}</p>
+      {/* ── GOVERNANCE ── */}
+      <section style={{ background: "#fafaf9", padding: "80px 24px", borderBottom: "1px solid #e7e5e4" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
+            <div>
+              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#d97706", marginBottom: 16 }}>
+                TRUST & GOVERNANCE
+              </p>
+              <h2 style={{ fontSize: "clamp(26px, 3vw, 38px)", fontWeight: 800, color: "#1c1917", lineHeight: 1.15, letterSpacing: "-0.02em", marginBottom: 20 }}>
+                Workspace isolation. Role-level control. Your data stays yours.
+              </h2>
+              <p style={{ fontSize: 15, color: "#78716c", lineHeight: 1.7, marginBottom: 24 }}>
+                Every organisation runs in an isolated workspace with row-level security. Access control is enforced at the database level — not a front-end check. Your uploaded documents and Business Memory are used only in your workspace and never used to train shared models.
+              </p>
             </div>
-          ))}
+            <div style={{ display: "grid", gap: 12 }}>
+              {[
+                { title: "Row-level security", body: "Every workspace is isolated at the database level. No cross-tenant data access is architecturally possible." },
+                { title: "Role-based access", body: "Owners, admins, managers, members, and viewers — each with the right level of control." },
+                { title: "Data privacy", body: "Your documents, tenders, and proposals are used only to run your workspace. Never for shared model training." },
+                { title: "Audit logs", body: "Every action is logged. Your team's activity is traceable and reviewable at any time." },
+              ].map((item, i) => (
+                <div key={i} style={{
+                  display: "flex", gap: 14, padding: "16px 18px", borderRadius: 10,
+                  background: "white", border: "1.5px solid #f5f5f4",
+                }}>
+                  <div style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(217,119,6,0.08)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5.2l-2.5 2.5.6 3.5L7 9.5l-3.1 1.7.6-3.5L2 5.2l3.5-.7L7 1z" fill="#d97706"/></svg>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: "#1c1917", marginBottom: 3 }}>{item.title}</div>
+                    <div style={{ fontSize: 13, color: "#78716c", lineHeight: 1.5 }}>{item.body}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-amber-900 text-white">
-        <div className="max-w-4xl mx-auto px-6 py-16 text-center">
-          <h2 className="text-3xl font-semibold mb-4">Ready to win more opportunities?</h2>
-          <p className="text-amber-200 text-lg mb-8 max-w-xl mx-auto">
-            Join companies using Propol AI to discover relevant opportunities and prepare winning proposals at scale.
+      {/* ── CLOSING CTA ── */}
+      <section style={{
+        background: "linear-gradient(160deg, #0c0804 0%, #1a0f06 50%, #0a0d1a 100%)",
+        padding: "120px 24px", textAlign: "center", position: "relative", overflow: "hidden",
+      }}>
+        <div style={{
+          position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)",
+          width: 800, height: 400,
+          background: "radial-gradient(ellipse, rgba(217,119,6,0.15) 0%, rgba(37,99,235,0.06) 50%, transparent 70%)",
+          pointerEvents: "none",
+        }} />
+        <div style={{ maxWidth: 700, margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <h2 style={{ fontSize: "clamp(36px, 5vw, 64px)", fontWeight: 800, color: "#ffffff", lineHeight: 1.08, letterSpacing: "-0.03em", marginBottom: 24 }}>
+            Build a pipeline that<br />
+            <span style={{ background: "linear-gradient(90deg, #f59e0b, #fbbf24, #60a5fa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              never misses a bid.
+            </span>
+          </h2>
+          <p style={{ fontSize: 17, color: "rgba(255,255,255,0.45)", marginBottom: 48, lineHeight: 1.65 }}>
+            Start on the free plan. Add Business Memory. Discover your first matching opportunities. Your first proposal draft is ready in under an hour.
           </p>
-          <Link href="/sign-up">
-            <Button size="xl" className="bg-white text-amber-900 hover:bg-amber-50 font-semibold">
-              Start for free — 200 credits included
-              <ArrowRight className="h-4 w-4 ml-1" />
-            </Button>
-          </Link>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
+            <Link href="/sign-up" style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              padding: "15px 36px", borderRadius: 10,
+              background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+              color: "#0c0804", fontSize: 15, fontWeight: 700, textDecoration: "none",
+              boxShadow: "0 0 50px rgba(245,158,11,0.3), 0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25)",
+            }}>
+              Get started free
+            </Link>
+            <Link href="/sign-in" style={{
+              display: "inline-flex", alignItems: "center",
+              padding: "15px 36px", borderRadius: 10,
+              border: "1px solid rgba(255,255,255,0.12)",
+              color: "rgba(255,255,255,0.7)", fontSize: 15, fontWeight: 500, textDecoration: "none",
+            }}>
+              Sign in
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-stone-200 bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <Logo size="sm" />
-          <p className="text-xs text-stone-400">© {new Date().getFullYear()} Propol AI. All rights reserved.</p>
-          <div className="flex gap-5 text-xs text-stone-400">
-            <a href="#" className="hover:text-stone-600">Privacy</a>
-            <a href="#" className="hover:text-stone-600">Terms</a>
-            <a href="#" className="hover:text-stone-600">Contact</a>
+      {/* ── FOOTER ── */}
+      <footer style={{ background: "#0c0804", padding: "48px 24px 32px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: 32, marginBottom: 48 }}>
+            <div>
+              <Logo size="sm" light />
+              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.3)", marginTop: 12, maxWidth: 240, lineHeight: 1.6 }}>
+                AI proposal and opportunity intelligence for organisations that compete for contracts.
+              </p>
+              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.2)", marginTop: 8 }}>
+                contact@propolai.cloud
+              </p>
+            </div>
+            <div style={{ display: "flex", gap: 48, flexWrap: "wrap" }}>
+              {[
+                { heading: "Product", links: ["How it works", "Features", "Pricing"] },
+                { heading: "Legal", links: ["Privacy", "Terms", "Security"] },
+              ].map(col => (
+                <div key={col.heading}>
+                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 16 }}>{col.heading}</div>
+                  {col.links.map(link => (
+                    <div key={link} style={{ marginBottom: 10 }}>
+                      <Link href={`/${link.toLowerCase()}`} style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>
+                        {link}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 24, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.2)", margin: 0 }}>
+              © {new Date().getFullYear()} Propol AI. All rights reserved.
+            </p>
+            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", margin: 0 }}>
+              Workspace-level isolation · Row-level security · Data privacy by design
+            </p>
           </div>
         </div>
       </footer>

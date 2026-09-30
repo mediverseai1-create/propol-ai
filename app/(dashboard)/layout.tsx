@@ -55,13 +55,13 @@ export default async function DashboardLayout({
     : 0
 
   return (
-    <div className="flex h-screen bg-stone-50 overflow-hidden">
+    <div style={{ display: "flex", height: "100vh", background: "#0f0b08", overflow: "hidden" }}>
       <Sidebar
         credits={credits}
         orgName={org?.name}
       />
 
-      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0, overflow: "hidden" }}>
         <Topbar
           userName={profile?.full_name || undefined}
           userEmail={user.email}
@@ -76,7 +76,7 @@ export default async function DashboardLayout({
           />
         )}
 
-        <main className="flex-1 overflow-y-auto scrollbar-thin">
+        <main style={{ flex: 1, overflowY: "auto", background: "#f9f8f7" }}>
           {children}
         </main>
       </div>

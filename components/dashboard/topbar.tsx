@@ -22,7 +22,7 @@ interface TopbarProps {
   title?: string
 }
 
-export function Topbar({ userName, userEmail, avatarUrl, title }: TopbarProps) {
+export function Topbar({ userName, userEmail, avatarUrl }: TopbarProps) {
   const router = useRouter()
   const supabase = createClient()
 
@@ -33,68 +33,81 @@ export function Topbar({ userName, userEmail, avatarUrl, title }: TopbarProps) {
   }
 
   return (
-    <header className="h-14 bg-white border-b border-stone-200 flex items-center justify-between px-5 shrink-0">
-      <div className="flex items-center gap-3">
-        {title && (
-          <h1 className="text-sm font-semibold text-stone-800">{title}</h1>
-        )}
+    <header style={{
+      height: 52, flexShrink: 0,
+      background: "#0f0b08",
+      borderBottom: "1px solid rgba(255,255,255,0.06)",
+      display: "flex", alignItems: "center", justifyContent: "space-between",
+      padding: "0 20px",
+    }}>
+      {/* Left — breadcrumb placeholder */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#f59e0b" }} />
+        <span style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", fontWeight: 500, letterSpacing: "0.04em" }}>
+          Propol AI
+        </span>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
         {/* Notifications */}
-        <button className="h-8 w-8 flex items-center justify-center rounded text-stone-500 hover:bg-stone-100 hover:text-stone-700 relative">
-          <Bell className="h-4 w-4" />
+        <button style={{
+          width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center",
+          borderRadius: 7, background: "transparent", border: "none", cursor: "pointer",
+          color: "rgba(255,255,255,0.3)", transition: "all 0.15s",
+        }}
+          onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.06)"; e.currentTarget.style.color = "rgba(255,255,255,0.7)" }}
+          onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "rgba(255,255,255,0.3)" }}>
+          <Bell style={{ width: 15, height: 15 }} />
         </button>
 
         {/* User menu */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="flex items-center gap-2 rounded px-2 py-1 hover:bg-stone-100 transition-colors">
-              <Avatar className="h-7 w-7">
+            <button style={{
+              display: "flex", alignItems: "center", gap: 8,
+              padding: "5px 10px", borderRadius: 8,
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              cursor: "pointer", transition: "all 0.15s",
+            }}>
+              <Avatar style={{ width: 24, height: 24 }}>
                 <AvatarImage src={avatarUrl} />
-                <AvatarFallback className="text-xs">
+                <AvatarFallback style={{ fontSize: 10, background: "#d97706", color: "#0c0804", fontWeight: 700 }}>
                   {getInitials(userName || userEmail || "U")}
                 </AvatarFallback>
               </Avatar>
-              <span className="text-sm text-stone-700 hidden sm:block max-w-[120px] truncate">
+              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", maxWidth: 120, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                 {userName || userEmail}
               </span>
-              <ChevronDown className="h-3 w-3 text-stone-400" />
+              <ChevronDown style={{ width: 12, height: 12, color: "rgba(255,255,255,0.3)" }} />
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-52">
-            <DropdownMenuLabel className="font-normal">
-              <div className="flex flex-col space-y-0.5">
-                <span className="text-sm font-medium text-stone-900">{userName}</span>
-                <span className="text-xs text-stone-500">{userEmail}</span>
+          <DropdownMenuContent align="end" className="w-52" style={{ background: "#1c1917", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10 }}>
+            <DropdownMenuLabel>
+              <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                <span style={{ fontSize: 13, fontWeight: 600, color: "#ffffff" }}>{userName}</span>
+                <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)" }}>{userEmail}</span>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator />
+            <DropdownMenuSeparator style={{ background: "rgba(255,255,255,0.06)" }} />
             <DropdownMenuItem asChild>
-              <Link href="/settings/profile" className="cursor-pointer">
-                <User className="mr-2 h-4 w-4" />
-                Profile
+              <Link href="/settings" style={{ display: "flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,0.6)", fontSize: 13, cursor: "pointer" }}>
+                <User style={{ width: 14, height: 14 }} /> Profile
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href="/credits" className="cursor-pointer">
-                <Zap className="mr-2 h-4 w-4" />
-                Credits & Usage
+              <Link href="/credits" style={{ display: "flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,0.6)", fontSize: 13, cursor: "pointer" }}>
+                <Zap style={{ width: 14, height: 14 }} /> Credits & Usage
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href="/settings" className="cursor-pointer">
-                <Settings className="mr-2 h-4 w-4" />
-                Settings
+              <Link href="/settings" style={{ display: "flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,0.6)", fontSize: 13, cursor: "pointer" }}>
+                <Settings style={{ width: 14, height: 14 }} /> Settings
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={handleSignOut}
-              className="text-red-600 focus:text-red-600 cursor-pointer"
-            >
-              <LogOut className="mr-2 h-4 w-4" />
-              Sign out
+            <DropdownMenuSeparator style={{ background: "rgba(255,255,255,0.06)" }} />
+            <DropdownMenuItem onClick={handleSignOut} style={{ display: "flex", alignItems: "center", gap: 8, color: "#f87171", fontSize: 13, cursor: "pointer" }}>
+              <LogOut style={{ width: 14, height: 14 }} /> Sign out
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
