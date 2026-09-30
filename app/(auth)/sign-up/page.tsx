@@ -99,7 +99,7 @@ export default function SignUpPage() {
       <div className="mb-8">
         <h1 className="text-2xl font-semibold text-stone-900">Start your free account</h1>
         <p className="mt-1.5 text-sm text-stone-500">
-          200 free credits included. No credit card required.
+          200 free credits included.
         </p>
       </div>
 

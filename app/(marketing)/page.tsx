@@ -86,25 +86,19 @@ export default function LandingPage() {
 
           {/* Main headline */}
           <h1 style={{
-            fontSize: "clamp(42px, 6vw, 76px)", fontWeight: 800,
-            lineHeight: 1.08, letterSpacing: "-0.03em",
-            margin: "0 0 28px", color: "#ffffff",
+            fontSize: "clamp(36px, 5vw, 68px)", fontWeight: 800,
+            lineHeight: 1.1, letterSpacing: "-0.03em",
+            margin: "0 0 40px", color: "#ffffff",
+            maxWidth: 820, marginLeft: "auto", marginRight: "auto",
           }}>
-            The AI that reads every<br />
+            The AI that finds opportunities, qualifies them, builds proposals and{" "}
             <span style={{
               background: "linear-gradient(90deg, #f59e0b 0%, #fbbf24 40%, #60a5fa 100%)",
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-            }}>tender, qualifies every bid,</span><br />
-            and builds the proposal.
+            }}>wins tenders for businesses,</span>{" "}
+            automatically.
           </h1>
-
-          <p style={{
-            fontSize: 19, color: "rgba(255,255,255,0.5)", lineHeight: 1.7,
-            maxWidth: 600, margin: "0 auto 48px",
-          }}>
-            Propol AI studies your company, scans the market for matching contracts, scores every opportunity against your capabilities, and drafts submission-ready proposals — section by section.
-          </p>
 
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
             <Link href="/sign-up" style={{
@@ -174,17 +168,17 @@ export default function LandingPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 2 }}>
             {[
               {
-                icon: "🔍",
+                icon: "",
                 title: "Business Memory learns your company",
                 body: "It reads your past contracts, certifications, team structure, and capabilities. Every discovery decision is grounded in what your organisation can actually deliver.",
               },
               {
-                icon: "⚡",
+                icon: "",
                 title: "The AI scans and qualifies automatically",
                 body: "Propol AI surfaces matching tenders, scores each against your profile, and flags what to pursue, what to pass, and why — with no manual sifting.",
               },
               {
-                icon: "📄",
+                icon: "",
                 title: "Proposals are drafted section by section",
                 body: "Executive summary, technical approach, methodology, pricing — each section generated from your own company data and the opportunity's requirements.",
               },
@@ -196,7 +190,6 @@ export default function LandingPage() {
                 background: "white",
                 marginLeft: i > 0 ? -1 : 0,
               }}>
-                <div style={{ fontSize: 28, marginBottom: 16 }}>{col.icon}</div>
                 <h3 style={{ fontSize: 17, fontWeight: 700, color: "#1c1917", marginBottom: 10, lineHeight: 1.3 }}>{col.title}</h3>
                 <p style={{ fontSize: 14, color: "#78716c", lineHeight: 1.65, margin: 0 }}>{col.body}</p>
               </div>
